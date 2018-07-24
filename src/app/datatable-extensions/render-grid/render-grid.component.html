@@ -1,0 +1,27 @@
+<app-test-wrap (filter)="this.doFilter($event)">
+  <ngx-datatable
+  class="material"
+  [rows]="this.rows | gridFilter:this.filter"
+  [columnMode]="'force'"
+  [headerHeight]="50"
+  [footerHeight]="50"
+  [rowHeight]="'auto'">
+  <ngx-datatable-column name="name">
+      <ng-template let-column="column" ngx-datatable-header-template>
+        <span class="template-behaviour">{{column.name}}</span>
+        <app-text-filter name="name" (filter)="filterWrapper.applyFilter($event)"></app-text-filter>
+      </ng-template>
+      <ng-template let-value="value" ngx-datatable-cell-template>
+        HASCHE {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="age">
+      <ng-template let-column="column" ngx-datatable-header-template>
+
+        <span class="template-behaviour">{{column.name}}</span>
+        <app-text-filter name="age" (filter)="filterWrapper.applyFilter($event)"></app-text-filter>
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+</app-test-wrap>
+{{this.filter | json}}
