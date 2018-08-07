@@ -1,0 +1,14 @@
+input {
+    user-select: none;
+    cursor: pointer;
+    border: 0;
+    border-bottom: 1px solid rgba(128,128,128,0.5);
+    padding: 4px;
+    width: 100%;
+    color: rgba(0, 0, 0, 0.87);
+}
+
+input:focus {
+    outline: none;
+    border-bottom: 1px solid rgba(128,128,128,1);
+}

@@ -1,0 +1,46 @@
+.item {
+    /* padding: 3px 0; */
+    /* margin: 3px; */
+    padding: 8px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.5);
+    user-select: none;
+    cursor: pointer;
+}
+
+.item:hover {
+    background-color: rgba(128, 128, 128, 0.5);
+    color: black;
+}
+
+.icon {
+    padding-right: 3px;
+    min-width: 40px;
+    display: inline-block;
+    text-align: center;
+}
+
+.text {
+    padding-left: 3px;
+    min-width: 100px;
+    display: inline-block;
+    text-align: center;
+    /* border-left: 1px solid gray; s */
+    /* padding-left: 3px; */
+}
+
+button {
+    display:block;
+    width: 100%;
+    background-color: white;
+    color: rgba(128,128,128,1);
+    border: none;
+    /* font-size: 8pt; */
+    outline: none;
+    padding: 8px;
+    /* height: 100%; */
+}
+
+button:hover {
+    background-color: rgba(128,128,128,0.5);
+    color: black;
+}

@@ -5,10 +5,12 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { SectionModule } from './section/section.module';
 import { DatatableExtensionsModule } from './datatable-extensions/datatable-extensions.module';
+import { OComponent } from './o/o.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    OComponent
   ],
   imports: [
     BrowserModule,

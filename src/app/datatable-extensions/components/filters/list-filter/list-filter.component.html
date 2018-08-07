@@ -1,0 +1,18 @@
+<app-filter-container  [label]="this.displayName">
+  <app-filter-input-readonly input
+    (action)="this.toggleMenu()"
+    [value]="this.displayValue">
+  </app-filter-input-readonly>
+  <app-filter-button buttons
+    [ngStyle]="this.getClearButtonStyle(this.values)"
+    (action)="this.clearFilter()"
+    label="x">
+  </app-filter-button>
+  <app-filter-menu menu [show]="this.showMenu">
+    <app-multiple-filter-menu 
+        [values]="this.list"
+        (onSelect)="this.setValues($event)"
+        >
+    </app-multiple-filter-menu>
+  </app-filter-menu>
+</app-filter-container>

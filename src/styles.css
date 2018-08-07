@@ -10,3 +10,29 @@ html, body {
 
   font-family: sans-serif;
 }
+
+ .datatable-header {
+  overflow: visible!important;
+  height: auto;
+}
+
+.datatable-header-cell {
+  overflow: visible!important;
+  padding: 0px!important;
+}
+
+.datatable-row-center {
+  transform: none!important;
+}
+
+.ngx-datatable {
+  overflow: visible!important;
+}
+
+.datatable-body-cell {
+  padding: 5px!important;
+}
+
+input[type=text]::-ms-clear {
+  display: none;
+}

@@ -1,0 +1,22 @@
+:host {
+    /* display: none; */
+    display: block;
+    position: absolute;
+
+    margin-top: -1px;
+    right: 0px;
+
+    /* min-width: 200px;
+    min-height: 200px; */
+
+    border: 1px solid gray;
+    /* padding: 5px; */
+
+    background-color: white;
+    transform: translate3d(0px, 0px, 0px);
+    /* transform: rotate(34deg); */
+
+    overflow: visible;
+    z-index: 9999;
+}
+

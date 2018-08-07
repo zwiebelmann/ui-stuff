@@ -1,0 +1,22 @@
+:host {
+    display: block;
+}
+
+.container {
+    display:flex;
+    padding: 5px 5px 5px 5px;
+}
+
+.input {
+    flex: 1;
+}
+
+.headerLabel {
+    cursor: pointer;
+    user-select: none;
+    background-color: #00547E;
+    color: white;
+    font-size: 1.1em;
+    padding: 5px 5px 5px 5px;
+}
+

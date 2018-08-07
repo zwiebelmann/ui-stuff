@@ -1,43 +1,8 @@
-<app-section header="Inhalt" collapsible="true">
-  <div>Ich bin der Inhalt</div>
-  <div>Ich bin der Inhalt</div>
-  <div>Ich bin der Inhalt</div>
-  <div>Ich bin der Inhalt</div>
-  <div>Ich bin der Inhalt</div>
-  <div>Ich bin der Inhalt</div>
-  <div>Ich bin der Inhalt</div>
-  <div>Ich bin der Inhalt</div>
-  <div>Ich bin der Inhalt</div>
-  <div>Ich bin der Inhalt</div>
-  <div>Ich bin der Inhalt</div>
-  <div>Ich bin der Inhalt</div>
-  <div>Ich bin der Inhalt</div>
-  <div>Ich bin der Inhalt</div>
-  <div>Ich bin der Inhalt</div>
-  <div>Ich bin der Inhalt</div>
-  <div>Ich bin der Inhalt</div>
-</app-section>
 
-<app-render-grid></app-render-grid>
-
-<!-- <p>moin</p> -->
-<!-- <app-section header="Inhalt">
-    <div>Ich bin der Inhalt</div>
-    <div>Ich bin der Inhalt</div>
-    <div>Ich bin der Inhalt</div>
-    <div>Ich bin der Inhalt</div>
-    <div>Ich bin der Inhalt</div>
-    <div>Ich bin der Inhalt</div>
-    <div>Ich bin der Inhalt</div>
-    <div>Ich bin der Inhalt</div>
-    <div>Ich bin der Inhalt</div>
-    <div>Ich bin der Inhalt</div>
-    <div>Ich bin der Inhalt</div>
-    <div>Ich bin der Inhalt</div>
-    <div>Ich bin der Inhalt</div>
-    <div>Ich bin der Inhalt</div>
-    <div>Ich bin der Inhalt</div>
-    <div>Ich bin der Inhalt</div>
-    <div>Ich bin der Inhalt</div>
-  </app-section> -->
-  <p>Ich bin ein P. Ich sollte mit hoch wandern</p>
+  <app-filter-grid [rows]="this.rows">
+    <app-filter-column prop="name" name="Name" type="string"></app-filter-column>
+    <app-filter-column prop="age" name="Age" type="number"></app-filter-column>
+    <!-- <app-filter-column name="birthday" type="date"></app-filter-column> -->
+    <app-filter-column prop="single" name="Single?" type="bool"></app-filter-column>
+    <app-filter-column prop="location" name="Location" listName="locations" type="list" [list]="this.locations"></app-filter-column>
+  </app-filter-grid>

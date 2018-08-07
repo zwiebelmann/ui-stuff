@@ -1,0 +1,28 @@
+.item {
+    padding: 8px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.5);
+    user-select: none;
+    cursor: pointer;
+}
+
+.item:hover {
+    background-color: rgba(128, 128, 128, 0.5);
+    /* background-color: rgba(207, 4, 42, 1); */
+    color: black;
+}
+
+.icon {
+    padding-right: 3px;
+    min-width: 40px;
+    display: inline-block;
+    text-align: center;
+}
+
+.text {
+    padding-left: 3px;
+    min-width: 100px;
+    display: inline-block;
+    text-align: center;
+}
+
+/*207 4 42*/
