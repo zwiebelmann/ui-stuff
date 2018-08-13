@@ -43,9 +43,11 @@ export class NumberFilterComponent implements OnInit {
   }
 
   toggleMenu() {
-    this.showMenu = this.showMenu === 'none' 
-      ? 'block'
-      : 'none';
+    setTimeout(() => {
+      this.showMenu = this.showMenu === 'none' 
+        ? 'block'
+        : 'none';
+    }, 1);
   }
   
   clearFilter() {

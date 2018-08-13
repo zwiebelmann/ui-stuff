@@ -41,9 +41,11 @@ export class BoolFilterComponent implements OnInit {
   }
 
   toggleMenu() {
-    this.showMenu = this.showMenu === 'none' 
-      ? 'block'
-      : 'none';
+    setTimeout(() => {
+      this.showMenu = this.showMenu === 'none' 
+        ? 'block'
+        : 'none';
+    }, 1);
   }
 
   clearFilter() {

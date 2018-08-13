@@ -3,10 +3,14 @@
         (action)="this.toggleMenu($event)" 
         [value]="this.displayValue">
     </app-filter-input-readonly>
+    <app-filter-button buttons
+        (action)="this.toggleMenu($event)"
+        assetUrl="assets/filter.png">
+    </app-filter-button>
     <app-filter-button buttons 
         [ngStyle]="this.getClearButtonStyle(this.value)"
         (action)="this.clearFilter()"
-        label="x">
+        assetUrl="assets/notfilter.png">
     </app-filter-button>
     <app-filter-menu menu [show]="this.showMenu">
         <app-simple-filter-menu 

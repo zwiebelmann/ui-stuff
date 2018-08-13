@@ -1,5 +1,5 @@
 export default function getClearButtonStyle(value: any) {
-    if(!value) {
+    if(value == null) {
       return {
         'visibility': 'hidden'
       };

@@ -1,8 +1,12 @@
-import { Component, OnInit, AfterContentInit, ContentChildren, Input, QueryList } from '@angular/core';
+import { Component, OnInit, AfterContentInit, ContentChildren, Input, QueryList, ViewChildren, Output, EventEmitter } from '@angular/core';
 import { FilterColumnComponent } from '../filter-column/filter-column.component';
 import { FilterArgument } from '../../models/filter-argument';
 import cloneMap from '../../utils/cloneMap';
 import FilterListItem from '../../models/filter-list-item';
+import { StringFilterComponent } from '../filters/string-filter/string-filter.component';
+import { NumberFilterComponent } from '../filters/number-filter/number-filter.component';
+import { BoolFilterComponent } from '../filters/bool-filter/bool-filter.component';
+import { ListFilterComponent } from '../filters/list-filter/list-filter.component';
 
 @Component({
   selector: 'app-filter-grid',
@@ -12,14 +16,29 @@ import FilterListItem from '../../models/filter-list-item';
 export class FilterGridComponent implements OnInit, AfterContentInit {
   @ContentChildren(FilterColumnComponent) columns: QueryList<FilterColumnComponent>
 
+  @ViewChildren(StringFilterComponent) stringmenus: QueryList<StringFilterComponent>
+  @ViewChildren(NumberFilterComponent) numbermenus: QueryList<NumberFilterComponent>
+  @ViewChildren(BoolFilterComponent) boolmenus: QueryList<BoolFilterComponent>
+  @ViewChildren(ListFilterComponent) listmenus: QueryList<ListFilterComponent>
+
   @Input() rows: any;
 
+  // Selektierte Rows mit two way databinding
+  @Input() selectedRows: any[];
+  @Output() selectedRowsChange = new EventEmitter<any[]>();  
+
   public filters: Map<string, FilterArgument>;
+
+  public messages = {
+    emptyMessage: 'Keine Daten vorhanden',
+    totalMessage: 'Datensätze'
+  }
 
   constructor() { }
   
   ngOnInit() {
     if(this.rows == null) { throw new Error('Attribute "rows" is required'); }
+    if(this.selectedRows == null) { this.selectedRows = new Array<any>() }
 
     this.filters = new Map<string, FilterArgument>();
 
@@ -31,12 +50,36 @@ export class FilterGridComponent implements OnInit, AfterContentInit {
     });
   }
 
+  closeOtherMenus($event: any) {
+    if(!$event.path.find(i => i.tagName == 'APP-FILTER-MENU')) { // außerhalb des FilterMenüs
+      this.stringmenus.forEach(fm => fm.showMenu = "none");
+      this.numbermenus.forEach(fm => fm.showMenu = "none");
+      this.boolmenus.forEach(fm => fm.showMenu = "none");
+      this.listmenus.forEach(fm => fm.showMenu = "none");
+    }
+  }
+
+  onSelect({selected}) {
+    this.selectedRows.splice(0, this.selectedRows.length);
+    this.selectedRows.push(...selected);
+
+    this.selectedRowsChange.emit(this.selectedRows);
+  }
+
   applyFilter($event: FilterArgument) {
     const clonedFilters = cloneMap(this.filters);
 
     clonedFilters.set($event.name, $event);
 
     this.filters = clonedFilters;
+  }
+
+  getLink(link: string, param: any) {
+    if (link != null && param != null) {
+      const baselink = link.endsWith("/") ? link.substring(0, link.length - 1): link;
+      return `${baselink}/${param}`;
+    }
+    return '';
   }
 
   findInList(list: FilterListItem[], key: number) {

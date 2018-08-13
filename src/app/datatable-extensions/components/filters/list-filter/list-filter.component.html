@@ -4,9 +4,13 @@
     [value]="this.displayValue">
   </app-filter-input-readonly>
   <app-filter-button buttons
+    (action)="this.toggleMenu()"
+    assetUrl="assets/filter.png">
+  </app-filter-button>
+  <app-filter-button buttons
     [ngStyle]="this.getClearButtonStyle(this.values)"
     (action)="this.clearFilter()"
-    label="x">
+    assetUrl="assets/notfilter.png">
   </app-filter-button>
   <app-filter-menu menu [show]="this.showMenu">
     <app-multiple-filter-menu 

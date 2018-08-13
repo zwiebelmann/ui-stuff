@@ -1,1 +1,4 @@
-<button (click)="this.action.emit()" tabindex="-1">{{this.label}}</button>
+<button (click)="this.action.emit()" tabindex="-1">
+    <span *ngIf="this.assetUrl == null">{{this.label}}</span>
+    <img *ngIf="this.assetUrl != null" [src]="this.assetUrl" />
+</button>

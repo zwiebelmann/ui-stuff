@@ -3,12 +3,12 @@
         </app-filter-input-string>
         <app-filter-button buttons
             (action)="this.toggleMenu()"
-            [label]="this.currentFilterMode.short">
+            assetUrl="assets/filter.png">
         </app-filter-button>
         <app-filter-button buttons
             [ngStyle]="this.getClearButtonStyle(this.value)"
             (action)="this.clearFilter()"
-            label="x">
+            assetUrl="assets/notfilter.png">
         </app-filter-button>
         <app-filter-menu menu [show]="this.showMenu">
                 <app-simple-filter-menu 

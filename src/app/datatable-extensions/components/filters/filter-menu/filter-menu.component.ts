@@ -7,6 +7,4 @@ import { Component, OnInit, Input, HostBinding, ElementRef } from '@angular/core
 })
 export class FilterMenuComponent {
   @HostBinding('style.display') @Input() show: string;
-
-
 }

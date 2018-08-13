@@ -1,4 +1,4 @@
-import { Component, OnInit, Input,  } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter,  } from '@angular/core';
 import FilterListItem from '../../models/filter-list-item';
 
 @Component({
@@ -11,6 +11,10 @@ export class FilterColumnComponent implements OnInit {
   @Input() type: string;
   @Input() prop: string;
   @Input() list: FilterListItem[];
+  @Input() link: string;
+  @Input() linkProp: string;
+  @Input() inlineEdit: boolean;
+  @Output() onChange = new EventEmitter<any>();
 
   constructor() { }
 
@@ -22,5 +26,9 @@ export class FilterColumnComponent implements OnInit {
     // if(this.list != null) {
     //   this.list.unshift(new FilterListItem(null, ""));
     // }
+  }
+
+  public enterValue($event) {
+    this.onChange.emit($event.target.value);
   }
 }

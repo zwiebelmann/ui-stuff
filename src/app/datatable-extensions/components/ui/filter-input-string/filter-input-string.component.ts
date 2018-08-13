@@ -20,17 +20,7 @@ export class FilterInputStringComponent implements OnInit, AfterContentInit {
     if (this.value == '') this.value = null;
 
     this.action.emit(this.value);
-  }
-
-  getStyle() {
-    if(!this.value) {
-      return {
-        'display': 'inline!important',
-        'visibility': 'hidden'
-      };
-    }
-  }
-  
+  }  
 
   ngOnInit() {
   }
@@ -38,7 +28,7 @@ export class FilterInputStringComponent implements OnInit, AfterContentInit {
   ngAfterContentInit() {
     this.enters$ = fromEvent(this.input.nativeElement, 'keyup')
       .pipe(
-        debounceTime(1000)
+        debounceTime(600)
       );
     
     this.enters$.subscribe(() => this.checkInput());
