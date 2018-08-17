@@ -1,0 +1,10 @@
+<app-filter-input-readonly 
+(action)="this.toggleMenu()"
+[value]="this.findInList(column.list, value)">
+</app-filter-input-readonly>
+<app-filter-menu [show]="this.showMenu">
+  <app-simple-filter-menu 
+      [values]="this.column.list"
+      (onSelect)="this.select($event)">
+  </app-simple-filter-menu>
+</app-filter-menu>

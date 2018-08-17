@@ -1,13 +1,14 @@
-import { Component, OnInit, Input, EventEmitter, Output, ViewChild, AfterContentInit } from '@angular/core';
-import { Observable, fromEvent } from 'rxjs';
+import { Component, OnInit, Input, Output, ViewChild, EventEmitter } from '@angular/core';
+import { Observable } from 'rxjs/internal/Observable';
+import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-filter-input-string',
-  templateUrl: './filter-input-string.component.html',
-  styleUrls: ['./filter-input-string.component.css']
+  selector: 'app-filter-input-number',
+  templateUrl: './filter-input-number.component.html',
+  styleUrls: ['./filter-input-number.component.css']
 })
-export class FilterInputStringComponent implements OnInit, AfterContentInit {
+export class FilterInputNumberComponent implements OnInit {
   @Input() value;
   @Output() action = new EventEmitter<any>();
   @ViewChild('input') input;
@@ -19,7 +20,7 @@ export class FilterInputStringComponent implements OnInit, AfterContentInit {
   checkInput() {
     if (this.value == '') this.value = null;
 
-    this.action.emit(this.value);
+    this.action.emit(+this.value);
   }  
 
   ngOnInit() {

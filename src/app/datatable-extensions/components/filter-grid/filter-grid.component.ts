@@ -2,11 +2,12 @@ import { Component, OnInit, AfterContentInit, ContentChildren, Input, QueryList,
 import { FilterColumnComponent } from '../filter-column/filter-column.component';
 import { FilterArgument } from '../../models/filter-argument';
 import cloneMap from '../../utils/cloneMap';
-import FilterListItem from '../../models/filter-list-item';
 import { StringFilterComponent } from '../filters/string-filter/string-filter.component';
 import { NumberFilterComponent } from '../filters/number-filter/number-filter.component';
 import { BoolFilterComponent } from '../filters/bool-filter/bool-filter.component';
 import { ListFilterComponent } from '../filters/list-filter/list-filter.component';
+import { InlineEditListComponent } from '../cell-templates/inline-edit-list/inline-edit-list.component';
+import findInList from '../../utils/findInList';
 
 @Component({
   selector: 'app-filter-grid',
@@ -20,6 +21,7 @@ export class FilterGridComponent implements OnInit, AfterContentInit {
   @ViewChildren(NumberFilterComponent) numbermenus: QueryList<NumberFilterComponent>
   @ViewChildren(BoolFilterComponent) boolmenus: QueryList<BoolFilterComponent>
   @ViewChildren(ListFilterComponent) listmenus: QueryList<ListFilterComponent>
+  @ViewChildren(InlineEditListComponent) inlineListMenus: QueryList<InlineEditListComponent>
 
   @Input() rows: any;
 
@@ -33,6 +35,8 @@ export class FilterGridComponent implements OnInit, AfterContentInit {
     emptyMessage: 'Keine Daten vorhanden',
     totalMessage: 'Datensätze'
   }
+
+  findInList = findInList;
 
   constructor() { }
   
@@ -56,6 +60,7 @@ export class FilterGridComponent implements OnInit, AfterContentInit {
       this.numbermenus.forEach(fm => fm.showMenu = "none");
       this.boolmenus.forEach(fm => fm.showMenu = "none");
       this.listmenus.forEach(fm => fm.showMenu = "none");
+      this.inlineListMenus.forEach(fm => fm.showMenu = "none");
     }
   }
 
@@ -80,9 +85,5 @@ export class FilterGridComponent implements OnInit, AfterContentInit {
       return `${baselink}/${param}`;
     }
     return '';
-  }
-
-  findInList(list: FilterListItem[], key: number) {
-    return list.find(i => i.key == key).value;
   }
 }

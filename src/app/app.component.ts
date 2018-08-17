@@ -33,4 +33,12 @@ export class AppComponent implements OnInit {
   ageChanged($event) {
     console.log($event);
   }
+
+  singleChanged($event) {
+    console.log($event);
+  }
+
+  locationChanged($event) {
+    console.log($event);
+  }
 }

@@ -9,62 +9,54 @@
   [headerHeight]="70"
   [footerHeight]="35"
   rowHeight="auto">
-  <ngx-datatable-column [width]="30" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
+  <!-- Multiselect Checkbox Column -->
+  <ngx-datatable-column [width]="50" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
     <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected" let-selectFn="selectFn">
       <app-filter-container [label]="'&nbsp;'">        
-        <input style="display:block;margin-top:7px;" input type="checkbox" [checked]="allRowsSelected" (change)="selectFn(!allRowsSelected)"/>
+        <!-- <input style="display:block;margin-top:7px;" input type="checkbox" [checked]="allRowsSelected" (change)="selectFn(!allRowsSelected)"/> -->
+        <mat-checkbox input [value]="allRowsSelected" (change)="selectFn(!allRowsSelected)"></mat-checkbox>
       </app-filter-container>
     </ng-template>
     <ng-template ngx-datatable-cell-template let-value="value" let-isSelected="isSelected" let-onCheckboxChangeFn="onCheckboxChangeFn">
-      <input type="checkbox" [checked]="isSelected" (change)="onCheckboxChangeFn($event)"/>
+      <mat-checkbox [value]="isSelected" (change)="onCheckboxChangeFn($event)"></mat-checkbox>
+      <!-- <input type="checkbox" [checked]="isSelected" (change)="onCheckboxChangeFn($event)"/> -->
     </ng-template>
   </ngx-datatable-column>
-  <ngx-datatable-column 
-    *ngFor="let c of this.columns"
-    [ngSwitch]="c.type"
-    [name]="c.name" [prop]="c.prop">
+  <ngx-datatable-column *ngFor="let c of this.columns" [ngSwitch]="c.type" [name]="c.name" [prop]="c.prop">
+    <!-- Column Filter Headers -->
     <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
-      <app-string-filter *ngSwitchCase="'string'" 
-        [displayName]="c.name" 
-        [name]="c.prop"
-        (filter)="this.applyFilter($event)">
+      <app-string-filter *ngSwitchCase="'string'" [displayName]="c.name" [name]="c.prop" (filter)="this.applyFilter($event)">
       </app-string-filter>
-      <app-number-filter *ngSwitchCase="'number'"
-        [displayName]="c.name"
-        [name]="c.prop"
-        (filter)="this.applyFilter($event)">
+      <app-number-filter *ngSwitchCase="'number'" [displayName]="c.name" [name]="c.prop" (filter)="this.applyFilter($event)">
       </app-number-filter>
-      <app-bool-filter *ngSwitchCase="'bool'"
-        [displayName]="c.name"
-        [name]="c.prop"
-        (filter)="this.applyFilter($event)">
+      <app-bool-filter *ngSwitchCase="'bool'" [displayName]="c.name" [name]="c.prop" (filter)="this.applyFilter($event)">
       </app-bool-filter>
-      <app-list-filter *ngSwitchCase="'list'"
-        [displayName]="c.name"
-        [name]="c.prop"
-        [list]="c.list"
-        (filter)="this.applyFilter($event)">
+      <app-list-filter *ngSwitchCase="'list'" [displayName]="c.name" [name]="c.prop" [list]="c.list" (filter)="this.applyFilter($event)">
       </app-list-filter>
-      <!-- <app-date-filter *ngSwitchCase="'date'" [name]="c.name" (filter)="this.applyFilter($event)"></app-date-filter>
-       -->
     </ng-template>
+    <!-- Row Templates  -->
     <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-      <div *ngIf="c.link != null && c.linkProp != null">                    
+      <!-- Link Column Templates -->
+      <div *ngIf="c.link != null && c.linkProp != null">
         <a [href]="getLink(c.link, row[c.linkProp])" *ngSwitchCase="'list'">{{this.findInList(c.list, value)}}</a>
         <a [href]="getLink(c.link, row[c.linkProp])" *ngSwitchCase="'bool'">{{value}}</a>
         <a [href]="getLink(c.link, row[c.linkProp])" *ngSwitchCase="'string'">{{value}}</a>
         <a [href]="getLink(c.link, row[c.linkProp])" *ngSwitchCase="'number'">{{value}}</a>
       </div>
+      <!-- Inline Edit Templates -->
       <div *ngIf="c.inlineEdit">
-        <input *ngSwitchCase="'string'" type="text" (change)="c.enterValue($event)" [value]="value" />
-        <input *ngSwitchCase="'number'" type="number" (change)="c.enterValue($event)" [value]="value" />
-
-        <!-- <span *ngSwitchCase="'list'">{{this.findInList(c.list, value)}}</span>
-        <input *ngSwitchCase="'bool'" type="checkbox" [checked]="value" disabled="disabled" />
-        <span >{{value}}</span>
-        <span *ngSwitchCase="'number'">{{value}}</span> -->
+        <app-inline-edit-string *ngSwitchCase="'string'" [column]="c" [row]="row" [value]="value">
+        </app-inline-edit-string>
+        <app-inline-edit-number *ngSwitchCase="'number'" [column]="c" [row]="row" [value]="value">
+        </app-inline-edit-number>
+        <app-inline-edit-bool *ngSwitchCase="'bool'" [column]="c" [row]="row" [value]="value">
+        </app-inline-edit-bool>
+        <app-inline-edit-list *ngSwitchCase="'list'" [column]="c" [row]="row" [value]="value">          
+        </app-inline-edit-list>
+        <app-inline-edit-date *ngSwitchCase="'date'" [column]="c" [row]="row" [value]="value">
+        </app-inline-edit-date>
       </div>
-      <!-- <div *ngIf="c.editMode" -->
+      <!-- Display Value Templates -->
       <div *ngIf="c.link == null && c.linkProp == null && c.inlineEdit == null">
           <span *ngSwitchCase="'list'">{{this.findInList(c.list, value)}}</span>
           <input *ngSwitchCase="'bool'" type="checkbox" [checked]="value" disabled="disabled" />
