@@ -1,4 +1,4 @@
-<app-filter-container [label]="this.displayName">
+<app-filter-container (sortFn)="triggerSort()" [label]="this.displayName">
         <app-filter-input-string input [value]="this.value" (action)="this.doFilter($event)">
         </app-filter-input-string>
         <app-filter-button buttons

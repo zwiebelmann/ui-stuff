@@ -27,6 +27,7 @@ export class InlineEditListComponent implements OnInit {
     this.value = $event.key;
     this.column.selectListValue(this.value, this.row);
     this.showMenu = 'none';
+    this.row[this.column.prop] = this.value;
   }
 
   toggleMenu() {

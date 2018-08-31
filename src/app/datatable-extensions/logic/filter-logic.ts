@@ -1,4 +1,5 @@
 import FilterListItem from "../models/filter-list-item";
+import * as moment from 'moment'
 
 export function StringFilter(key: string, row: any, value: any, mode: string) {
     const rowValue = row[key] as string;
@@ -36,19 +37,19 @@ export function NumberFilter(key: string, row: any, value: any, mode: string) {
 
     switch (mode) {
         case 'gt':
-            result = rowValue > value;
+            result = rowValue > typedValue;
             break;
         case 'gteq':
-            result = rowValue >= value;
+            result = rowValue >= typedValue;
             break;
         case 'eq':
-            result = rowValue == value;
+            result = rowValue === typedValue;
             break;
         case 'lt':
-            result = rowValue < value;
+            result = rowValue < typedValue;
             break;
         case 'lteq':
-            result = rowValue <= value;
+            result = rowValue <= typedValue;
             break;
         case null:
             result = true;
@@ -76,7 +77,39 @@ export function ListFilter(key: string, row: any, values: FilterListItem[]) {
     return values.some(v => v.key == rowValue);
 }
 
+export function DateFilter(key: string, row: any, mode: string, value: any, secondValue: any) {
+    const rowValue = moment(row[key]).startOf('day');
+    const typedValue1 = moment(value).startOf('day');
+    const typedValue2 = moment(secondValue).startOf('day');
+    let result: boolean;
 
+    if(value == null) return true;
 
-          // date ==> gt, gteq, eq, lt, lteq, btwn
-          // dropdown ==> multiple!
+    switch (mode) {
+        case 'gt':
+            result = rowValue > typedValue1;
+            break;
+        case 'gteq':
+            result = rowValue >= typedValue1;
+            break;
+        case 'eq':
+            result = rowValue.isSame(typedValue1);
+            break;
+        case 'lt':
+            result = rowValue < typedValue1;
+            break;
+        case 'lteq':
+            result = rowValue <= typedValue1;
+            break;
+        case 'btwn':
+            result = typedValue1 <= rowValue && rowValue <= typedValue2;
+            break;
+        case null:
+            result = true;
+            break;
+        default:
+            throw new Error(`Invalid filter mode ${mode}`);
+    }
+
+    return result;
+}

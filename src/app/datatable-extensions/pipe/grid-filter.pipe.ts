@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { FilterArgument } from '../models/filter-argument';
-import { StringFilter, NumberFilter, BooleanFilter, ListFilter } from '../logic/filter-logic';
+import { StringFilter, NumberFilter, BooleanFilter, ListFilter, DateFilter } from '../logic/filter-logic';
 
 @Pipe({
   name: 'gridFilter'
@@ -28,13 +28,14 @@ export class GridFilterPipe implements PipeTransform {
           case 'list':
             result = ListFilter(key, r, filter.value);
             break;
+          case 'date':
+            result = DateFilter(key, r, filter.mode, filter.value, filter.secondValue)
+            break;
           default:
-            //result = true;
             throw new Error(`Invalid datatype ${filter.datatype}`);
         }
 
         return result;
-
       });
     });
 

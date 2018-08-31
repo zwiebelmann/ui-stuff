@@ -21,5 +21,6 @@ export class InlineEditStringComponent implements OnInit {
   changed($event: string) {    
     this.value = $event;
     this.column.enterStringValue(this.value, this.row);
+    this.row[this.column.prop] = this.value;
   }
 }

@@ -38,3 +38,16 @@ html, body {
 input[type=text]::-ms-clear {
   display: none;
 }
+
+app-filter-input-date .mat-icon-button {
+  max-height: 20px;
+  line-height: 20px;
+  width: 20px;
+}
+
+datatable-body-cell .mat-checkbox-ripple {
+  height: 30px!important;
+  width: 30px!important;
+  top: calc(50% - 15px)!important;
+  left: calc(50% - 15px)!important;
+}

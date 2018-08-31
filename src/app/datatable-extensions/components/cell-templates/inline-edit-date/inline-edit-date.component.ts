@@ -17,9 +17,10 @@ export class InlineEditDateComponent implements OnInit {
     if (this.column == null) { throw new Error('Attribute "column" is required'); }
     if (this.column == null) { throw new Error('Attribute "row" is required'); }
   }
-  
-  selected($event: Event) {    
-    this.value = (<HTMLInputElement>$event.target).checked;
+
+  valueChanged($event) {
+    this.value = $event;
     this.column.selectDateValue(this.value, this.row);
-  }  
+    this.row[this.column.prop] = this.value;
+  }
 }

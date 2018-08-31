@@ -8,6 +8,8 @@ import { BoolFilterComponent } from '../filters/bool-filter/bool-filter.componen
 import { ListFilterComponent } from '../filters/list-filter/list-filter.component';
 import { InlineEditListComponent } from '../cell-templates/inline-edit-list/inline-edit-list.component';
 import findInList from '../../utils/findInList';
+import { DateFilterComponent } from '../filters/date-filter/date-filter.component';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-filter-grid',
@@ -19,17 +21,20 @@ export class FilterGridComponent implements OnInit, AfterContentInit {
 
   @ViewChildren(StringFilterComponent) stringmenus: QueryList<StringFilterComponent>
   @ViewChildren(NumberFilterComponent) numbermenus: QueryList<NumberFilterComponent>
+  @ViewChildren(DateFilterComponent) datemenus: QueryList<DateFilterComponent>
   @ViewChildren(BoolFilterComponent) boolmenus: QueryList<BoolFilterComponent>
   @ViewChildren(ListFilterComponent) listmenus: QueryList<ListFilterComponent>
   @ViewChildren(InlineEditListComponent) inlineListMenus: QueryList<InlineEditListComponent>
 
   @Input() rows: any;
 
+
   // Selektierte Rows mit two way databinding
   @Input() selectedRows: any[];
   @Output() selectedRowsChange = new EventEmitter<any[]>();  
 
   public filters: Map<string, FilterArgument>;
+  public sorts: any[];
 
   public messages = {
     emptyMessage: 'Keine Daten vorhanden',
@@ -39,6 +44,10 @@ export class FilterGridComponent implements OnInit, AfterContentInit {
   findInList = findInList;
 
   constructor() { }
+
+  test(ee) {
+    console.log(ee);
+  }
   
   ngOnInit() {
     if(this.rows == null) { throw new Error('Attribute "rows" is required'); }
@@ -58,6 +67,7 @@ export class FilterGridComponent implements OnInit, AfterContentInit {
     if(!$event.path.find(i => i.tagName == 'APP-FILTER-MENU')) { // außerhalb des FilterMenüs
       this.stringmenus.forEach(fm => fm.showMenu = "none");
       this.numbermenus.forEach(fm => fm.showMenu = "none");
+      this.datemenus.forEach(fm => fm.showMenu = "none");
       this.boolmenus.forEach(fm => fm.showMenu = "none");
       this.listmenus.forEach(fm => fm.showMenu = "none");
       this.inlineListMenus.forEach(fm => fm.showMenu = "none");
@@ -85,5 +95,9 @@ export class FilterGridComponent implements OnInit, AfterContentInit {
       return `${baselink}/${param}`;
     }
     return '';
+  }
+
+  convertDate(date: any) {
+    return moment(date).format('L');
   }
 }

@@ -31,6 +31,7 @@ export class FilterColumnComponent implements OnInit {
   private emitValue(value: any, row) {
     this.onChange.emit({
       newValue: value,
+      oldValue: row[this.prop],
       entity: row,
       prop: this.prop
     });    

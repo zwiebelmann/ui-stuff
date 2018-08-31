@@ -1,3 +1,21 @@
-<p>
-  date-filter works!
-</p>
+<app-filter-container (click)="triggerSort()" [label]="this.displayName">
+  <!-- <app-filter-input-string input [value]="this.value" (action)="this.doFilter($event)">
+  </app-filter-input-string> -->
+  <app-filter-input-date input [value]="this.value" (action)="this.doFilter($event)">
+  </app-filter-input-date>
+  <app-filter-button buttons
+      (action)="this.toggleMenu()"
+      assetUrl="assets/filter.png">
+  </app-filter-button>
+  <app-filter-button buttons
+      [ngStyle]="this.getClearButtonStyle(this.value)"
+      (action)="this.clearFilter()"
+      assetUrl="assets/notfilter.png">
+  </app-filter-button>
+  <app-filter-menu menu [show]="this.showMenu">
+          <app-simple-filter-menu 
+          [values]="this.filterModes"
+          (onSelect)="this.setMode($event)">
+      </app-simple-filter-menu>
+  </app-filter-menu>
+</app-filter-container>

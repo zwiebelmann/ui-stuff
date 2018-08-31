@@ -22,6 +22,7 @@ import { InlineEditStringComponent } from './components/cell-templates/inline-ed
 import { InlineEditBoolComponent } from './components/cell-templates/inline-edit-bool/inline-edit-bool.component';
 import { InlineEditNumberComponent } from './components/cell-templates/inline-edit-number/inline-edit-number.component';
 import { InlineEditDateComponent } from './components/cell-templates/inline-edit-date/inline-edit-date.component';
+import { FilterInputDateComponent } from './components/ui/filter-input-date/filter-input-date.component';
 import { FilterInputNumberComponent } from './components/ui/filter-input-number/filter-input-number.component';
 import { FilterCheckboxComponent } from './components/ui/filter-checkbox/filter-checkbox.component';
 
@@ -29,7 +30,19 @@ import { MatDatepickerModule, MatFormFieldModule } from '@angular/material';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import 'moment/locale/de'
-import { MAT_DATE_LOCALE } from '@angular/material';
+import { MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material';
+
+const DATE_FORMATS = {
+  parse: {
+    dateInput: 'L'
+  },
+  display: {
+    dateInput: 'L',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'L',
+    monthYearA11yLabel: 'MMMM YYYY'
+  }
+}
 
 @NgModule({
   imports: [
@@ -67,10 +80,12 @@ import { MAT_DATE_LOCALE } from '@angular/material';
     InlineEditNumberComponent,
     InlineEditDateComponent,
     FilterInputNumberComponent,
-    FilterCheckboxComponent
+    FilterCheckboxComponent,
+    FilterInputDateComponent
   ],
   providers: [
-    { provide: MAT_DATE_LOCALE, useValue: 'de'}
+    { provide: MAT_DATE_LOCALE, useValue: 'de'},
+    { provide: MAT_DATE_FORMATS, useValue: DATE_FORMATS }
   ]
 })
 export class DatatableExtensionsModule { }

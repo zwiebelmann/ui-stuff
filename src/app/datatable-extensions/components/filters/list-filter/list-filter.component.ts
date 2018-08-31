@@ -13,6 +13,7 @@ export class ListFilterComponent implements OnInit {
   @Input() displayName: string;
   @Input() list: FilterListItem[];
   @Output() filter = new EventEmitter<FilterArgument>();
+  @Output() sortFn = new EventEmitter<void>();
 
   public values: FilterListItem[];
   public displayValue: string;
@@ -24,6 +25,10 @@ export class ListFilterComponent implements OnInit {
   constructor() {
     this.showMenu = 'none';
     this.displayValue = null;
+   }
+
+   triggerSort() {
+     this.sortFn.emit();
    }
 
   doFilter() { 

@@ -21,5 +21,6 @@ export class InlineEditNumberComponent implements OnInit {
   changed($event: string) {    
     this.value = $event;
     this.column.enterNumberValue(+this.value, this.row);
+    this.row[this.column.prop] = this.value;
   }
 }

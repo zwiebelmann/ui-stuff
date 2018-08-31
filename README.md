@@ -28,8 +28,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## ToDo
 
-Checkboxen passen nicht in das Row Template
-Grid Rows müssen an den Wert angeglichen werden --> Es muss ein Call auf Grid-Ebene eingerichtet werden, der die Rows aktualisiert!
-Date Filter muss gebaut werden
-Date Inline Template muss angebunden werden
-
+Sortieren muss gehen

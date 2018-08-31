@@ -1,4 +1,4 @@
-<div class="headerLabel">{{this.label}}</div>
+<div class="headerLabel" (click)="triggerSort()">{{this.label}}<span class="sort-btn sort-desc datatable-icon-down"></span></div>
 <div class="container">
   <div class="input">
     <ng-content select="[input]"></ng-content>

@@ -12,6 +12,7 @@ export class NumberFilterComponent implements OnInit {
   @Input() name: string;
   @Input() displayName: string;
   @Output() filter = new EventEmitter<FilterArgument>();
+  @Output() sortFn = new EventEmitter<void>();
 
   public value: string;
   public showMenu: string;
@@ -31,6 +32,10 @@ export class NumberFilterComponent implements OnInit {
     this.filterModes.push(new FilterListItem('gteq', 'Größer gleich', '>='));
 
     this.showMenu = 'none';
+  }
+
+  triggerSort() {
+    this.sortFn.emit();
   }
 
   doFilter(value: any) {

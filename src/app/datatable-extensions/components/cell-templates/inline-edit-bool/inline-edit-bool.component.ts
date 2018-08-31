@@ -22,5 +22,6 @@ export class InlineEditBoolComponent implements OnInit {
   selected($event: MatCheckboxChange) { 
     this.value = $event.checked;
     this.column.selectBoolValue(this.value, this.row);
+    this.row[this.column.prop] = this.value;
   }  
 }

@@ -13,6 +13,7 @@ export class BoolFilterComponent implements OnInit {
   @Input() name: string;
   @Input() displayName: string;
   @Output() filter = new EventEmitter<FilterArgument>();
+  @Output() sortFn = new EventEmitter<void>();
 
   public value: boolean;
   public displayValue: string;
@@ -31,6 +32,10 @@ export class BoolFilterComponent implements OnInit {
 
     this.showMenu = 'none';
    }
+
+  triggerSort() {
+    this.sortFn.emit();
+  }
 
   doFilter() { 
     const filterArgument = new FilterArgument(
