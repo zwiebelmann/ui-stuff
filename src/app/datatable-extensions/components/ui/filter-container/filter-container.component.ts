@@ -7,6 +7,8 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 })
 export class FilterContainerComponent implements OnInit {
   @Input() label: string;
+  @Input() sorts: Array<any>;
+  @Input() name: string;
   @Output() sortFn = new EventEmitter<void>();
 
   constructor() { }
@@ -16,6 +18,14 @@ export class FilterContainerComponent implements OnInit {
 
   triggerSort() {
     this.sortFn.emit();
+  }
+
+  getCurrentSort() {
+    if (this.sorts == undefined) return;
+
+    if (this.sorts.length > 0 && this.sorts[0].prop == this.name) {
+      return this.sorts[0].dir;
+    }
   }
 
 }

@@ -1,4 +1,4 @@
-<app-filter-container (click)="triggerSort()" [label]="this.displayName">
+<app-filter-container (click)="triggerSort()" [sorts]="sorts" [name]="name" [label]="this.displayName">
   <!-- <app-filter-input-string input [value]="this.value" (action)="this.doFilter($event)">
   </app-filter-input-string> -->
   <app-filter-input-date input [value]="this.value" (action)="this.doFilter($event)">

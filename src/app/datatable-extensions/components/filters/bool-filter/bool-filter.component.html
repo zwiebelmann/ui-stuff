@@ -1,4 +1,4 @@
-<app-filter-container (sortFn)="triggerSort()"  [label]="this.displayName">
+<app-filter-container (sortFn)="triggerSort()" [sorts]="sorts" [name]="name" [label]="this.displayName">
     <app-filter-input-readonly input
         (action)="this.toggleMenu($event)" 
         [value]="this.displayValue">

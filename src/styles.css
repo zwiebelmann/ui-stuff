@@ -51,3 +51,12 @@ datatable-body-cell .mat-checkbox-ripple {
   top: calc(50% - 15px)!important;
   left: calc(50% - 15px)!important;
 }
+
+.datatable-header-cell-template-wrap>.datatable-icon-up, .datatable-header-cell-template-wrap>.datatable-icon-down {
+  display: none!important;
+}
+
+/* 
+.datatable-icon-up, .datatable-icon-down {
+  display: none!important;
+} */

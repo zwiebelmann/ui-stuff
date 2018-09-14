@@ -34,7 +34,7 @@ export class FilterGridComponent implements OnInit, AfterContentInit {
   @Output() selectedRowsChange = new EventEmitter<any[]>();  
 
   public filters: Map<string, FilterArgument>;
-  public sorts: any[];
+  public sorts = new Array<any>();
 
   public messages = {
     emptyMessage: 'Keine Daten vorhanden',
@@ -54,7 +54,6 @@ export class FilterGridComponent implements OnInit, AfterContentInit {
     if(this.selectedRows == null) { this.selectedRows = new Array<any>() }
 
     this.filters = new Map<string, FilterArgument>();
-
   }
   
   ngAfterContentInit(): void {
@@ -99,5 +98,10 @@ export class FilterGridComponent implements OnInit, AfterContentInit {
 
   convertDate(date: any) {
     return moment(date).format('L');
+  }
+
+  sortOccured($event) {
+    this.sorts = $event.sorts;
+    console.log($event);
   }
 }

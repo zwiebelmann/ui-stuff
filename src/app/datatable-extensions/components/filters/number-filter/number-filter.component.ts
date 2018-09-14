@@ -11,6 +11,7 @@ import getClearButtonStyle from '../../../utils/getClearButtonStyle';
 export class NumberFilterComponent implements OnInit {
   @Input() name: string;
   @Input() displayName: string;
+  @Input() sorts: Array<any>;
   @Output() filter = new EventEmitter<FilterArgument>();
   @Output() sortFn = new EventEmitter<void>();
 
