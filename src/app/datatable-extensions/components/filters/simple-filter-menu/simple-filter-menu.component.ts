@@ -25,7 +25,14 @@ export class SimpleFilterMenuComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(this.values == null)  { throw new Error('Attribute "values" is required'); }
+    if (this.values == null)  { throw new Error('Attribute "values" is required'); }
+    this.values = this.removeDuplicates(this.values, 'value');
+  }
+
+  removeDuplicates(array, prop) {
+    return array.filter((obj, pos, arr) => {
+      return arr.map(mapObj => mapObj[prop]).indexOf(obj[prop]) === pos;
+    });
   }
 
 }

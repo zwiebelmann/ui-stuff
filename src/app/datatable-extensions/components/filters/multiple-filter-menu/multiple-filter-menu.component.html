@@ -3,7 +3,7 @@
   [ngStyle]="{'font-weight': this.getActiveStateFont(i), 'color': this.getActiveStateColor(i)}"
   (click)="this.toggleFilter(i)"
   *ngFor="let i of this.values">
-  <span class="icon">{{i.short}}</span>
+  <span *ngIf="i.short" class="icon">{{i.short}}</span>
   <span class="text">{{i.value}}</span>
 </div>
 <button type="button" (click)="this.filter()">

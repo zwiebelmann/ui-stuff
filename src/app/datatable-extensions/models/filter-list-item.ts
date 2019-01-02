@@ -1,5 +1,5 @@
 export default class FilterListItem {
-    active: boolean = false;
+    active = false;
 
     constructor(
         public key: any,

@@ -23,7 +23,7 @@ export class NumberFilterComponent implements OnInit {
 
   public getClearButtonStyle = getClearButtonStyle;
 
-  constructor() { 
+  constructor() {
     this.filterModes = new Array<FilterListItem>();
 
     this.filterModes.push(new FilterListItem('eq', 'Gleich', '='));
@@ -50,12 +50,12 @@ export class NumberFilterComponent implements OnInit {
 
   toggleMenu() {
     setTimeout(() => {
-      this.showMenu = this.showMenu === 'none' 
+      this.showMenu = this.showMenu === 'none'
         ? 'block'
         : 'none';
     }, 1);
   }
-  
+
   clearFilter() {
     this.value = null;
     const filterArgument = new FilterArgument(
@@ -78,7 +78,7 @@ export class NumberFilterComponent implements OnInit {
 
   ngOnInit() {
     if (this.name == null) { throw new Error('Attribute "name" is required'); }
-    if (this.displayName == null) this.displayName = this.name;
+    if (this.displayName == null) { this.displayName = this.name; }
 
     this.currentFilterMode = this.filterModes[0];
     this.currentFilterMode.active = true;

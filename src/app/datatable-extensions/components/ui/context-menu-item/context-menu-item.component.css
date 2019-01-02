@@ -1,0 +1,21 @@
+.item {
+    padding: 8px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.5);
+    color: black;
+    user-select: none;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.item:hover {
+    background-color: rgba(128, 128, 128, 0.5);
+    /* background-color: rgba(207, 4, 42, 1); */
+    color: black;
+}
+
+.text {
+    padding: 4px;
+    padding-left: 8px;
+}

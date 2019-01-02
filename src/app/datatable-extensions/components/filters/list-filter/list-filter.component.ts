@@ -32,7 +32,7 @@ export class ListFilterComponent implements OnInit {
      this.sortFn.emit();
    }
 
-  doFilter() { 
+  doFilter() {
     const filterArgument = new FilterArgument(
       this.name, 'list', null, this.values
     );
@@ -42,7 +42,7 @@ export class ListFilterComponent implements OnInit {
 
   toggleMenu() {
     setTimeout(() => {
-      this.showMenu = this.showMenu === 'none' 
+      this.showMenu = this.showMenu === 'none'
         ? 'block'
         : 'none';
     }, 1);
@@ -57,14 +57,22 @@ export class ListFilterComponent implements OnInit {
 
     this.showMenu = 'none';
 
-    this.list.forEach(i => i.active = false);
+    // this.list.forEach(i => i.active = false);
+
+    // this.list = this.list.map(i => Object.assign(i, { active: false }));
+    this.list = this.list.map(i => ({ ...i, active: false }));
 
     this.filter.emit(filterArgument);
   }
 
   setValues(values: FilterListItem[]) {
     this.values = values;
-    this.displayValue = values.map(val => val.short).join('; ');
+
+    if (values.every(val => val.short != null && val.short.length > 0)) {
+      this.displayValue = values.map(val => val.short).join('; ');
+    } else {
+      this.displayValue = values.map(val => val.value).join('; ');
+    }
 
     this.doFilter();
     this.showMenu = 'none';
@@ -72,7 +80,7 @@ export class ListFilterComponent implements OnInit {
 
   ngOnInit() {
     if (this.name == null) { throw new Error('Attribute "name" is required'); }
-    if (this.list == null) { throw new Error('Attribute "list" is required'); }
+    if (this.list == null) { throw new Error(`Attribute "list" is required for '${this.name}'`); }
     if (this.displayName == null) this.displayName = this.name;
   }
 }

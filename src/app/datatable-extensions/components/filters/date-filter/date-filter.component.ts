@@ -37,6 +37,7 @@ export class DateFilterComponent implements OnInit {
   }
 
   triggerSort() {
+    console.log("sort");
     this.sortFn.emit();
   }
 
@@ -50,6 +51,7 @@ export class DateFilterComponent implements OnInit {
   }
 
   toggleMenu() {
+    console.log("toggleMenu");
     setTimeout(() => {
       this.showMenu = this.showMenu === 'none' 
         ? 'block'

@@ -1,1 +1,8 @@
-<app-filter-input-string [value]="value" (action)="changed($event)"></app-filter-input-string>
+<app-filter-input-string 
+    [isNumber]="constraints.IsNumber"
+    [value]="value" 
+    [debounceMilliseconds]="1200"
+    [type]="actionType"
+    (action)="changed($event)"
+    (change)="keyPressed($event)">
+</app-filter-input-string>

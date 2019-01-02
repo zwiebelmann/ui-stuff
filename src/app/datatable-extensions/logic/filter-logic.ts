@@ -1,12 +1,13 @@
-import FilterListItem from "../models/filter-list-item";
-import * as moment from 'moment'
+import FilterListItem from '../models/filter-list-item';
+import * as moment from 'moment';
 
 export function StringFilter(key: string, row: any, value: any, mode: string) {
     const rowValue = row[key] as string;
     const typedValue = value as string;
     let result: boolean;
 
-    if(typedValue == null || typedValue === '') return true;
+    if (typedValue === null || typedValue === '') { return true; }
+    if (rowValue === null) { return false; }
 
     switch (mode) {
         case 'ctns':
@@ -33,7 +34,8 @@ export function NumberFilter(key: string, row: any, value: any, mode: string) {
     const typedValue = value as number;
     let result: boolean;
 
-    if(typedValue == null) return true;
+    if (typedValue === null) { return true; }
+    if (rowValue === null) { return false; }
 
     switch (mode) {
         case 'gt':
@@ -43,7 +45,7 @@ export function NumberFilter(key: string, row: any, value: any, mode: string) {
             result = rowValue >= typedValue;
             break;
         case 'eq':
-            result = rowValue === typedValue;
+            result = +rowValue === +typedValue;
             break;
         case 'lt':
             result = rowValue < typedValue;
@@ -64,17 +66,22 @@ export function NumberFilter(key: string, row: any, value: any, mode: string) {
 export function BooleanFilter(key: string, row: any, value: any) {
     const rowValue = row[key] as boolean;
 
-    if (value == null) return true;
+    if (value === null) { return true; }
 
-    return rowValue == value;
+    return rowValue === null && value === false // ausnahmebehandlung, false entspricht auch null werten beim filter
+        ? true
+        : rowValue === value;
 }
 
 export function ListFilter(key: string, row: any, values: FilterListItem[]) {
     const rowValue = row[key];
 
-    if (values == null || values.length == 0) { return true };
+    if (values == null || values.length === 0) { return true; }
 
-    return values.some(v => v.key == rowValue);
+    return values.some(v => {
+        console.log(`value: ${v.value} found: ${v.key.indexOf(rowValue) > -1}`);
+        return v.key.indexOf(rowValue) > -1;
+    });
 }
 
 export function DateFilter(key: string, row: any, mode: string, value: any, secondValue: any) {
@@ -83,7 +90,7 @@ export function DateFilter(key: string, row: any, mode: string, value: any, seco
     const typedValue2 = moment(secondValue).startOf('day');
     let result: boolean;
 
-    if(value == null) return true;
+    if (value === null) { return true; }
 
     switch (mode) {
         case 'gt':

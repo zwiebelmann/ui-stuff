@@ -1,7 +1,8 @@
 export default function getClearButtonStyle(value: any) {
-    if(value == null) {
+    if (value == null) {
       return {
-        'visibility': 'hidden'
+        // 'visibility': 'hidden'
+        'display': 'none'
       };
     }
-  };
+  }

@@ -1,11 +1,22 @@
 
   <app-filter-grid [rows]="this.rows" [(selectedRows)]="this.selectedRows">
     <!-- <app-filter-column prop="name" name="Name" type="string" link="/detail/" linkProp="id"></app-filter-column> -->
-    <app-filter-column prop="name" name="Name" type="string" [inlineEdit]="true" (onChange)="singleChanged($event)"></app-filter-column>
-    <app-filter-column prop="age" name="Age" type="number" [inlineEdit]="true" (onChange)="ageChanged($event)"></app-filter-column>
-    <app-filter-column prop="birthday" name="birthday" type="date" [inlineEdit]="true" (onChange)="birthdayChanged($event)"></app-filter-column>
-    <app-filter-column prop="single" name="Single?" type="bool" [inlineEdit]="true" (onChange)="singleChanged($event)"></app-filter-column>
-    <app-filter-column prop="location" [inlineEdit]="true" (onChange)="this.locationChanged($event)" name="Location" listName="locations" type="list" [list]="this.locations"></app-filter-column>
+    <app-filter-column prop="name" name="Name" type="string"></app-filter-column>
+    <app-filter-column prop="age" name="Age" type="number"></app-filter-column>
+    <app-filter-column prop="birthday" name="birthday" type="date"></app-filter-column>
+    <app-filter-column prop="single" name="Single?" type="bool"></app-filter-column>
+    <app-filter-column prop="location" name="Location" listName="locations" type="list" [list]="this.locations"></app-filter-column>
     <!-- input column mit action > für barcode > mehrere events bereitstellen -->
   </app-filter-grid>
+
+<!-- 
+  <app-filter-grid [rows]="this.rows" [(selectedRows)]="this.selectedRows">
+    ## <app-filter-column prop="name" name="Name" type="string" link="/detail/" linkProp="id"></app-filter-column>
+    <app-filter-column prop="name" name="Name" type="string" [inlineEdit]="true" [actionType]="'Enter'" (onChange)="singleChanged($event)"></app-filter-column>
+    <app-filter-column prop="age" name="Age" type="number" [inlineEdit]="true" [actionType]="'Enter'" (onChange)="ageChanged($event)"></app-filter-column>
+    <app-filter-column prop="birthday" name="birthday" type="date" [inlineEdit]="true" [actionType]="'Enter'" (onChange)="birthdayChanged($event)"></app-filter-column>
+    <app-filter-column prop="single" name="Single?" type="bool" [inlineEdit]="true" [actionType]="'Enter'" (onChange)="singleChanged($event)"></app-filter-column>
+    <app-filter-column prop="location" [inlineEdit]="true" (onChange)="this.locationChanged($event)" [actionType]="'Enter'" name="Location" listName="locations" type="list" [list]="this.locations"></app-filter-column>
+    ## input column mit action > für barcode > mehrere events bereitstellen
+  </app-filter-grid> -->
   {{selectedRows | json}}

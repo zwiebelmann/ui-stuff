@@ -3,3 +3,18 @@
     user-select: none;
   }
 
+.context-menu-container {
+  display: flex;
+}
+
+.context-menu-value {
+  flex: 1;
+}
+
+.backdrop {
+  opacity: 100%;
+}
+
+* {
+  font-size: 0.9em;
+}

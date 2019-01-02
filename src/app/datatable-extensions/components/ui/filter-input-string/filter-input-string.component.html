@@ -1,4 +1,5 @@
 <input input 
     #input
     type="text" 
+    (keypress)="changeValue($event)"
     [(ngModel)]="this.value" />

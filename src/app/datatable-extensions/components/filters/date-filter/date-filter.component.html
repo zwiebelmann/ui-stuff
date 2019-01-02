@@ -1,21 +1,17 @@
-<app-filter-container (click)="triggerSort()" [sorts]="sorts" [name]="name" [label]="this.displayName">
-  <!-- <app-filter-input-string input [value]="this.value" (action)="this.doFilter($event)">
-  </app-filter-input-string> -->
-  <app-filter-input-date input [value]="this.value" (action)="this.doFilter($event)">
-  </app-filter-input-date>
+<app-filter-container (sortFn)="triggerSort()" [sorts]="sorts" [name]="name" [label]="this.displayName">
+  <app-filter-input-date input [value]="this.value" (action)="this.doFilter($event)"></app-filter-input-date>
   <app-filter-button buttons
-      (action)="this.toggleMenu()"
-      assetUrl="assets/filter.png">
+                     (action)="this.toggleMenu()"
+                     assetUrl="assets/filter.png">
   </app-filter-button>
   <app-filter-button buttons
-      [ngStyle]="this.getClearButtonStyle(this.value)"
-      (action)="this.clearFilter()"
-      assetUrl="assets/notfilter.png">
+                     [ngStyle]="this.getClearButtonStyle(this.value)"
+                     (action)="this.clearFilter()"
+                     assetUrl="assets/notfilter.png">
   </app-filter-button>
   <app-filter-menu menu [show]="this.showMenu">
-          <app-simple-filter-menu 
-          [values]="this.filterModes"
-          (onSelect)="this.setMode($event)">
-      </app-simple-filter-menu>
+    <app-simple-filter-menu [values]="this.filterModes"
+                            (onSelect)="this.setMode($event)">
+    </app-simple-filter-menu>
   </app-filter-menu>
 </app-filter-container>

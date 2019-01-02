@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { FilterArgument } from '../../../models/filter-argument';
 import FilterListItem from '../../../models/filter-list-item';
 import getClearButtonStyle from '../../../utils/getClearButtonStyle';
+import { InlineEditConstraints } from '../../../models/inline-edit-constraints';
 
 @Component({
   selector: 'app-string-filter',
@@ -11,6 +12,7 @@ import getClearButtonStyle from '../../../utils/getClearButtonStyle';
 export class StringFilterComponent implements OnInit {
   @Input() name: string;
   @Input() displayName: string;
+  @Input() constraints: InlineEditConstraints;
   @Input() sorts: Array<any>;
   @Output() filter = new EventEmitter<FilterArgument>();
   @Output() sortFn = new EventEmitter<void>();

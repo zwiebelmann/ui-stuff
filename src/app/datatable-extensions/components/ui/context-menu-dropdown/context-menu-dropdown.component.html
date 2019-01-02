@@ -1,0 +1,9 @@
+<div class="container">
+  <app-context-menu-item 
+    *ngFor="let a of this.contextMenuActions"
+    [display]="a.display" 
+    (action)="doAction($event, a)" 
+    [icon]="a.icon"
+    [conditionProperty]="a.conditionProperty"
+    [item]="item"></app-context-menu-item>
+</div>

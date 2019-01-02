@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter,  } from '@angular/core';
 import FilterListItem from '../../models/filter-list-item';
+import { InlineEditConstraints } from '../../models/inline-edit-constraints';
+import { ContextMenuAction } from '../../models/context-menu-action';
 
 @Component({
   selector: 'app-filter-column',
@@ -12,20 +14,26 @@ export class FilterColumnComponent implements OnInit {
   @Input() prop: string;
   @Input() list: FilterListItem[];
   @Input() link: string;
+  @Input() maxWidth: number;
   @Input() linkProp: string;
   @Input() inlineEdit: boolean;
+  @Input() dateformat: string;
+  @Input() contextMenu: ContextMenuAction[]; // array von objekten mit display_value und action(parameter)
+  @Input() constraints: InlineEditConstraints;
+  @Input() actionType: "Enter" | "Auto";
   @Output() onChange = new EventEmitter<any>();
 
   constructor() { }
 
   ngOnInit() {
-    if(this.name == null) { throw new Error('Attribute "name" is required'); }
-    if(this.prop == null) { throw new Error('Attribute "prop" is required'); }
-    if(this.type == null) { throw new Error('Attribute "type" is required'); }
+    if (this.name == null) { throw new Error('Attribute "name" is required'); }
+    if (this.prop == null) { throw new Error('Attribute "prop" is required'); }
+    if (this.type == null) { throw new Error('Attribute "type" is required'); }
 
-    if(this.inlineEdit && this.link != null) {throw new Error('Cannot use inlineEdit mode and link mode together.');}
+    if (this.inlineEdit && this.actionType == null) { throw new Error('Attribute "actionType" is required'); }
+    if (this.inlineEdit && this.link != null) {throw new Error('Cannot use inlineEdit mode and link mode together.');}
 
-    if(this.prop == null) this.prop = this.name;
+    if (this.prop == null) { this.prop = this.name; }
   }
 
   private emitValue(value: any, row) {
@@ -34,12 +42,12 @@ export class FilterColumnComponent implements OnInit {
       oldValue: row[this.prop],
       entity: row,
       prop: this.prop
-    });    
+    });
   }
 
-  public selectListValue(value: number, row) { this.emitValue(+value, row); }
-  public enterStringValue(value: number, row) { this.emitValue(value, row); }
-  public enterNumberValue(value: number, row) { this.emitValue(+value, row); }
-  public selectBoolValue(value: number, row) { this.emitValue(!!value, row); }
-  public selectDateValue(value: number, row) { this.emitValue(value, row); } // ???
+  public selectListValue(value: any, row) { this.emitValue(+value, row); }
+  public enterStringValue(value: any, row) { this.emitValue(value, row); }
+  public enterNumberValue(value: any, row) { this.emitValue(+value, row); }
+  public selectBoolValue(value: any, row) { this.emitValue(!!value, row); }
+  public selectDateValue(value: any, row) { this.emitValue(value, row); }
 }

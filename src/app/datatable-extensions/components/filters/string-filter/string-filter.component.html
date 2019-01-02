@@ -1,5 +1,5 @@
 <app-filter-container (sortFn)="triggerSort()" [sorts]="sorts" [name]="name" [label]="this.displayName">
-    <app-filter-input-string input [value]="this.value" (action)="this.doFilter($event)">
+    <app-filter-input-string input [value]="this.value" [type]="'Auto'" [constraints]="constraints" (action)="this.doFilter($event)">
     </app-filter-input-string>
     <app-filter-button buttons
         (action)="this.toggleMenu()"
