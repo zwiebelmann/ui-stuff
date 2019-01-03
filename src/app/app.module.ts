@@ -3,19 +3,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { SectionModule } from './section/section.module';
 import { DatatableExtensionsModule } from './datatable-extensions/datatable-extensions.module';
-import { OComponent } from './o/o.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    OComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    SectionModule,
     DatatableExtensionsModule
   ],
   providers: [],

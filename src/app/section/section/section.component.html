@@ -1,9 +1,0 @@
-<div class="container">
-  <div class="header" [ngClass]="this.headerStyle" (click)="this.toggleState()">
-    <span>{{this.header}}</span>
-    <app-arrow-indicator [state]="this.sectionState" *ngIf="this.collapsible">
-    </app-arrow-indicator></div>
-  <div class="content" *ngIf="this.sectionState === 'active'" [@sectionState]="this.sectionState">
-    <ng-content></ng-content>
-  </div>
-</div>
