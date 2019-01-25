@@ -80,16 +80,16 @@
         <span [title]="convertDate(value, c.dateformat)" *ngSwitchCase="'date'">{{convertDate(value, c.dateformat)}}</span>
       </div>
 
-      <mat-menu #menu="matMenu">
-          <button mat-menu-item *ngFor="let a of c.actions" (click)="a.action(row)" >
+      <!-- <mat-menu #menu="matMenu">
+          <button mat-menu-item *ngFor="let a of c.actions" (click)="a.action(row)" > -->
             <!-- hier noch ein icon vorsehen! -->
-            <span>{{a.display}}</span>        
+            <!-- <span>{{a.display}}</span>        
           </button>
         
           <button mat-menu-item>
             <mat-icon>dialpad</mat-icon>
             <span>Redial</span>
-          </button>
+          </button> -->
           <!-- 
           <button mat-menu-item disabled>
             <mat-icon>voicemail</mat-icon>
@@ -99,7 +99,7 @@
             <mat-icon>notifications_off</mat-icon>
             <span>Disable alerts</span>
           </button> -->
-        </mat-menu>
+        <!-- </mat-menu> -->
     </ng-template>
   </ngx-datatable-column>
 </ngx-datatable>

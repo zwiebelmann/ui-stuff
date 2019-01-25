@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterContentInit, ContentChildren,
-   Input, QueryList, ViewChildren, Output, EventEmitter, ElementRef, Injector } from '@angular/core';
+   Input, QueryList, ViewChildren, Output, EventEmitter, ElementRef, Injector, Query } from '@angular/core';
 import { FilterColumnComponent } from '../filter-column/filter-column.component';
 import { FilterArgument } from '../../models/filter-argument';
 import cloneMap from '../../utils/cloneMap';
@@ -45,6 +45,7 @@ export class FilterGridComponent implements OnInit, AfterContentInit {
 
   public filters: Map<string, FilterArgument>;
   public sorts = new Array<any>();
+  public columnsInternal: FilterColumnComponent[];
 
   overlayRef: OverlayRef;
   elementRef: ElementRef<HTMLElement>;
@@ -71,6 +72,35 @@ export class FilterGridComponent implements OnInit, AfterContentInit {
   ngAfterContentInit(): void {
     this.columns.forEach(item => {
       this.filters.set(item.name, new FilterArgument(item.name, item.type));
+    });
+    this.initListFilters();
+  }
+
+  initListFilters() {
+    const columnDefinitions = this.columns.filter(c => c.listOnlyContaining && c.type === 'list');
+    if (columnDefinitions.length === 0) {
+      return;
+    }
+    console.log(columnDefinitions);
+
+    this.columns.forEach(c => {
+      if (c.listOnlyContaining && c.type === 'list') {
+        c.list.forEach(le => { // alle zurücksetzen
+            le.show = false;
+        });
+      }
+    });
+
+    this.rows.forEach(r => {
+      this.columns.forEach(c => {
+        if (c.listOnlyContaining && c.type === 'list') {
+          c.list.forEach(le => { // alle prüfen
+            if (le.key === r[c.prop]) {
+              le.show = true;
+            }
+          });
+        }
+      });
     });
   }
 
@@ -99,8 +129,6 @@ export class FilterGridComponent implements OnInit, AfterContentInit {
       backdropClass: 'backdrop',
       hasBackdrop: true
     });
-
-
 
     this.menuPortal = new ComponentPortal(
       ContextMenuDropdownComponent,
@@ -154,6 +182,7 @@ export class FilterGridComponent implements OnInit, AfterContentInit {
     clonedFilters.set($event.name, $event);
 
     this.filters = clonedFilters;
+    this.initListFilters();
   }
 
   getLink(link: string, param: any) {

@@ -13,6 +13,7 @@ export class FilterColumnComponent implements OnInit {
   @Input() type: string;
   @Input() prop: string;
   @Input() list: FilterListItem[];
+  @Input() listOnlyContaining = true;
   @Input() link: string;
   @Input() maxWidth: number;
   @Input() linkProp: string;
@@ -20,7 +21,8 @@ export class FilterColumnComponent implements OnInit {
   @Input() dateformat: string;
   @Input() contextMenu: ContextMenuAction[]; // array von objekten mit display_value und action(parameter)
   @Input() constraints: InlineEditConstraints;
-  @Input() actionType: "Enter" | "Auto";
+  @Input() actionType: 'Enter' | 'Auto';
+  // tslint:disable-next-line:no-output-on-prefix
   @Output() onChange = new EventEmitter<any>();
 
   constructor() { }
@@ -31,7 +33,7 @@ export class FilterColumnComponent implements OnInit {
     if (this.type == null) { throw new Error('Attribute "type" is required'); }
 
     if (this.inlineEdit && this.actionType == null) { throw new Error('Attribute "actionType" is required'); }
-    if (this.inlineEdit && this.link != null) {throw new Error('Cannot use inlineEdit mode and link mode together.');}
+    if (this.inlineEdit && this.link != null) {throw new Error('Cannot use inlineEdit mode and link mode together.'); }
 
     if (this.prop == null) { this.prop = this.name; }
   }

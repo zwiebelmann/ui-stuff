@@ -1,5 +1,6 @@
 export default class FilterListItem {
     active = false;
+    show = false;
 
     constructor(
         public key: any,

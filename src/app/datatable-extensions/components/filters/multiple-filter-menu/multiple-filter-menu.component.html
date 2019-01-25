@@ -1,11 +1,13 @@
-<div 
-  class="item" 
-  [ngStyle]="{'font-weight': this.getActiveStateFont(i), 'color': this.getActiveStateColor(i)}"
-  (click)="this.toggleFilter(i)"
-  *ngFor="let i of this.values">
-  <span *ngIf="i.short" class="icon">{{i.short}}</span>
-  <span class="text">{{i.value}}</span>
-</div>
+<ng-container *ngFor="let i of this.values">
+  <div 
+    class="item" 
+    [ngStyle]="{'font-weight': this.getActiveStateFont(i), 'color': this.getActiveStateColor(i)}"
+    (click)="this.toggleFilter(i)"
+    *ngIf="i.show">
+    <span *ngIf="i.short" class="icon">{{i.short}}</span>
+    <span class="text">{{i.value}}</span>
+  </div>
+</ng-container>
 <button type="button" (click)="this.filter()">
   Anwenden
 </button>

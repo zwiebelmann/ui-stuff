@@ -81,6 +81,6 @@ export class ListFilterComponent implements OnInit {
   ngOnInit() {
     if (this.name == null) { throw new Error('Attribute "name" is required'); }
     if (this.list == null) { throw new Error(`Attribute "list" is required for '${this.name}'`); }
-    if (this.displayName == null) this.displayName = this.name;
+    if (this.displayName == null) { this.displayName = this.name; }
   }
 }

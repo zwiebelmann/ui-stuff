@@ -16,10 +16,10 @@ export class AppComponent implements OnInit {
   rows = [
     { id: 1, name: 'irma', age: 15, birthday: '2018-08-02', single: true, location: 10 },
     { id: 2, name: 'Jesus Vogel', age: 25, birthday: '2018-06-01', single: false, location: 20 },
-    { id: 3, name: 'Dr. 00 Schneider', age: 35, birthday: '2017-08-01', single: true, location: 20 },
-    { id: 4, name: 'Chrisdorf Roos', age: 45, birthday: '2016-08-03', single: false, location: 30 },
-    { id: 5, name: 'Mario Giccone', age: 55, birthday: '2016-08-01', single: true, location: 40 }
-  ]
+    // { id: 3, name: 'Dr. 00 Schneider', age: 35, birthday: '2017-08-01', single: true, location: 20 },
+    // { id: 4, name: 'Chrisdorf Roos', age: 45, birthday: '2016-08-03', single: false, location: 30 },
+    // { id: 5, name: 'Mario Giccone', age: 55, birthday: '2016-08-01', single: true, location: 40 }
+  ];
 
   ngOnInit(): void {
     this.locations = new Array<FilterListItem>();
@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
     this.locations.push(new FilterListItem(10, 'Offenbach', 'OF'));
     this.locations.push(new FilterListItem(20, 'Frankfurt', 'F'));
     this.locations.push(new FilterListItem(30, 'Kelsterbach', 'GG'));
-    this.locations.push(new FilterListItem(40, "Usingen", 'USI'));
+    this.locations.push(new FilterListItem(40, 'Usingen', 'USI'));
   }
 
   ageChanged($event) {
@@ -43,6 +43,6 @@ export class AppComponent implements OnInit {
   }
 
   birthdayChanged($event) {
-    console.log($event)
+    console.log($event);
   }
 }

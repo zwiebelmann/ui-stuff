@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import FilterListItem from '../../../models/filter-list-item';
 
 @Component({
@@ -6,7 +6,7 @@ import FilterListItem from '../../../models/filter-list-item';
   templateUrl: './multiple-filter-menu.component.html',
   styleUrls: ['./multiple-filter-menu.component.css']
 })
-export class MultipleFilterMenuComponent {
+export class MultipleFilterMenuComponent implements OnInit {
   _values: FilterListItem[];
 
   get values(): FilterListItem[] {
@@ -23,6 +23,9 @@ export class MultipleFilterMenuComponent {
   constructor() { }
 
   public distinctvalues: FilterListItem[];
+
+  ngOnInit() {
+  }
 
   toggleFilter(item: FilterListItem) {
     item.active = !item.active;
@@ -51,6 +54,7 @@ export class MultipleFilterMenuComponent {
 
       if (newArray.length === 0) {
         item = new FilterListItem([value.key], value.value, value.short);
+        item.show = value.show;
         newArray.push(item);
         return;
       }
@@ -59,6 +63,7 @@ export class MultipleFilterMenuComponent {
 
       if (temp == null) {
         item = new FilterListItem([value.key], value.value, value.short);
+        item.show = value.show;
         newArray.push(item);
       } else {
         temp.key.push(value.key);
